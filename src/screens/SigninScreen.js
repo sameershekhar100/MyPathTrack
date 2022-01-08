@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View } from 'react-native'
 
-const AccountScreen = () => {
+const SigninScreen = () => {
     return (<View>
-        <Text>AccountScreen</Text>
+        <Text>SigninScreen</Text>
     </View>
     )
 }
 const styles = StyleSheet.create({})
 
-export default AccountScreen
+export default SigninScreen

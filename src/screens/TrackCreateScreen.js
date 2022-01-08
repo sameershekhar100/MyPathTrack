@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View } from 'react-native'
 
-const AccountScreen = () => {
+const TrackCreateScreen = () => {
     return (<View>
-        <Text>AccountScreen</Text>
+        <Text>TrackCreateScreen</Text>
     </View>
     )
 }
 const styles = StyleSheet.create({})
 
-export default AccountScreen
+export default TrackCreateScreen
