@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, StyleSheet } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
+import { Context as AuthContext } from "../Context/AuthContext";
 import Spacer from "../Components/Spacer";
 
 const SignupScreen = ({ navigation }) => {
     const [email, setEmail] = useState('')
+    const { state, signup } = useContext(AuthContext)
     const [password, setPassword] = useState('')
+    // console.log(state.errorMessage)
     return (
         <View style={styles.container}>
             <Spacer>
@@ -13,9 +16,10 @@ const SignupScreen = ({ navigation }) => {
             </Spacer>
             <Input label="Email"
                 value={email}
-                onChangeText={(newEmail) => setEmail(newEmail)}
+                onChangeText={setEmail}
                 autoCapitalize="none"
-                autoCorrect={false} />
+                autoCorrect={false}
+            />
             <Spacer />
             <Input
                 secureTextEntry
@@ -23,15 +27,19 @@ const SignupScreen = ({ navigation }) => {
                 value={password}
                 autoCapitalize="none"
                 autoCorrect={false}
-                onChangeText={(newPassword) => setPassword(newPassword)} />
+                onChangeText={setPassword} />
+
+            {state.errorMessage ? (
+                <Text style={styles.errorMessage}>{state.errorMessage}</Text>
+            ) : null}
             <Spacer>
-                <Button title="Go to Signin" onPress={() => {
-                    navigation.navigate('Signin')
-                }} />
+                <Button title="Sign Up" onPress={() => {
+
+                    signup({ email, password })
+                }
+                } />
             </Spacer>
-            <Button title="Go to mainflow" onPress={() => {
-                navigation.navigate('mainflow')
-            }} />
+
         </View>
 
     )
@@ -46,6 +54,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         marginBottom: 200
+    },
+    errorMessage: {
+        fontSize: 16,
+        color: 'red',
+        marginLeft: 15,
+        marginTop: 15,
     }
 })
 
